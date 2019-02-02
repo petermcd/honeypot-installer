@@ -1,0 +1,4 @@
+auth       required     ssh_honeypot.so
+account    required     ssh_honeypot.so
+session    required     ssh_honeypot.so
+password   required     ssh_honeypot.so

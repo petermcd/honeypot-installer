@@ -1,12 +1,12 @@
+sudo apt-get -y remove openssh-server
 sudo apt-get -y update
 sudo apt-get -y upgrade
 sudo apt-get -y install git
-sudo apt-get -y remove openssh-server
 
 #########################################
 
 sudo apt-get -y install autoconf
-apt-get -y install openssl
+sudo  apt-get -y install openssl
 sudo apt-get -y install zlib1g-dev
 sudo apt-get -y install libpam-dev
 sudo apt-get -y install libssl-dev
@@ -20,6 +20,12 @@ sudo autoreconf --install
 sudo ./configure --with-pam --prefix=/usr
 sudo make
 sudo make install
+
+//TODO update /usr/etc/sshd_config to enable pam and allow root login
+
+sudo systemctl unmask ssh.service
+sudo systemctl ssh enable
+sudo systemctl ssh start
 
 ########################################
 

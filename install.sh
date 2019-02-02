@@ -39,6 +39,8 @@ cd ssh-pam-login-logger
 
 sudo mv /etc/pam.d/sshd /etc/pam.d/sshdbackup
 sudo mv ./configurations/sshd /etc/pam.d/sshd
+// TODO sshd_config needs to be added to the project
+sudo mv -f ./configurations/sshd_config /usr/etc/sshd_config
 sudo chown root /etc/pam.d/sshd
 sudo chmod 644 /etc/pam.d/sshd
 

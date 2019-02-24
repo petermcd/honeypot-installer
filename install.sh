@@ -12,7 +12,7 @@ sudo apt-get -y install libpam-dev
 sudo apt-get -y install libssl-dev
 
 cd ~
-git clone http://192.168.1.200:7990/scm/hon/openssh-portable.git
+git clone https://github.com/PeterMcD/openssh-portable.git
 cd ~/openssh-portable
 
 sudo autoconf
@@ -34,15 +34,15 @@ sudo apt-get -y install libpam0g-dev
 sudo apt-get -y install sqlite3
 
 cd ~
-git clone http://192.168.1.200:7990/scm/hon/ssh-pam-login-logger.git
+git clone https://github.com/PeterMcD/ssh-pam-login-logger.git
 cd ssh-pam-login-logger
 
 sudo mv /etc/pam.d/sshd /etc/pam.d/sshdbackup
 sudo mv ./configurations/sshd /etc/pam.d/sshd
 // TODO sshd_config needs to be added to the project
-sudo mv -f ./configurations/sshd_config /usr/etc/sshd_config
-sudo chown root /etc/pam.d/sshd
-sudo chmod 644 /etc/pam.d/sshd
+//sudo mv -f ./configurations/sshd_config /usr/etc/sshd_config
+//sudo chown root /etc/pam.d/sshd
+//sudo chmod 644 /etc/pam.d/sshd
 
 chmod +x compile.sh
 sudo ./compile
@@ -52,7 +52,7 @@ sudo chmod 777 /var/log
 #########################################
 
 cd ~
-git clone http://192.168.1.200:7990/scm/hon/ssh-login-attempts-logger.git
+git clone https://github.com/PeterMcD/SSH-Login-Attempts-Logger.git
 
 //todo add to crontab automatically
 // */5 * * * * python3 /home/pi/ssh-login-attempts-logger/src/LoginExtractor.py

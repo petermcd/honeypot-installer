@@ -1,0 +1,11 @@
+image: debian:latest
+
+before_script:
+  - touch /bin/systemctl
+  
+
+test:
+  stage: test
+  script:
+    - chmod +x install.sh
+    - ./install.sh

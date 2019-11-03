@@ -1,58 +1,46 @@
-sudo apt-get -y remove openssh-server
-sudo apt-get -y update
-sudo apt-get -y upgrade
-sudo apt-get -y install git
+apt-get -y remove openssh-server
+apt-get -y update
+apt-get -y upgrade
+apt-get -y install git
 
 #########################################
 
-sudo apt-get -y install autoconf
-sudo  apt-get -y install openssl
-sudo apt-get -y install zlib1g-dev
-sudo apt-get -y install libpam-dev
-sudo apt-get -y install libssl-dev
+apt-get -y install autoconf
+apt-get -y install openssl
+apt-get -y install zlib1g-dev
+apt-get -y install libpam-dev
+apt-get -y install libssl-dev
+apt-get -y install make
+apt-get -y install gcc
 
-cd ~
+cd ..
 git clone https://github.com/PeterMcD/openssh-portable.git
-cd ~/openssh-portable
+cd openssh-portable
 
-sudo autoconf
-sudo autoreconf --install
-sudo ./configure --with-pam --prefix=/usr
-sudo make
-sudo make install
+autoconf
+autoreconf --install
+./configure --with-pam --prefix=/usr
+make
+make install
 
-//TODO update /usr/etc/sshd_config to enable pam and allow root login
-
-sudo systemctl unmask ssh.service
-sudo systemctl ssh enable
-sudo systemctl ssh start
+systemctl unmask ssh.service
+systemctl ssh enable
+systemctl ssh start
 
 ########################################
 
-sudo apt-get -y install libsqlite3-dev
-sudo apt-get -y install libpam0g-dev
-sudo apt-get -y install sqlite3
+apt-get -y install libsqlite3-dev
+apt-get -y install libpam0g-dev
+apt-get -y install sqlite3
 
-cd ~
+cd ..
 git clone https://github.com/PeterMcD/ssh-pam-login-logger.git
 cd ssh-pam-login-logger
 
-sudo mv /etc/pam.d/sshd /etc/pam.d/sshdbackup
-sudo mv ./configurations/sshd /etc/pam.d/sshd
-// TODO sshd_config needs to be added to the project
-//sudo mv -f ./configurations/sshd_config /usr/etc/sshd_config
-//sudo chown root /etc/pam.d/sshd
-//sudo chmod 644 /etc/pam.d/sshd
+mv /etc/pam.d/sshd /etc/pam.d/sshdbackup
+mv ../configurations/sshd /etc/pam.d/sshd
 
-chmod +x compile.sh
-sudo ./compile
+make
+make install
 
-sudo chmod 777 /var/log
-
-#########################################
-
-cd ~
-git clone https://github.com/PeterMcD/SSH-Login-Attempts-Logger.git
-
-//todo add to crontab automatically
-// */5 * * * * python3 /home/pi/ssh-login-attempts-logger/src/LoginExtractor.py
+chmod 777 /var/log

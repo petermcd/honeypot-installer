@@ -13,9 +13,9 @@ apt-get -y install libssl-dev
 apt-get -y install make
 apt-get -y install gcc
 
-cd ..
+cd ~
 git clone https://github.com/PeterMcD/openssh-portable.git
-cd openssh-portable
+cd ~/openssh-portable
 
 autoconf
 autoreconf --install
@@ -24,8 +24,8 @@ make
 make install
 
 systemctl unmask ssh.service
-systemctl ssh enable
-systemctl ssh start
+systemctl enable ssh
+systemctl start ssh
 
 ########################################
 
@@ -33,12 +33,19 @@ apt-get -y install libsqlite3-dev
 apt-get -y install libpam0g-dev
 apt-get -y install sqlite3
 
-cd ..
+cd ~
 git clone https://github.com/PeterMcD/ssh-pam-login-logger.git
-cd ssh-pam-login-logger
+cd ~/ssh-pam-login-logger
 
-mv /etc/pam.d/sshd /etc/pam.d/sshdbackup
-mv ../configurations/sshd /etc/pam.d/sshd
+rm -f /etc/pam.d/sshd
+mv ~/honeypot-installer/configurations/sshd /etc/pam.d/sshd
+chown root:root /etc/pam.d/sshd
+chmod 777 /etc/pam.d/sshd
+
+rm -f /usr/etc/sshd_config
+mv ~/honeypot-installer/configurations/sshd_config /usr/etc/sshd_config
+chown root:root /usr/etc/sshd_config
+chmod 644 /usr/etc/sshd_config
 
 make
 make install

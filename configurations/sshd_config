@@ -1,0 +1,6 @@
+AuthorizedKeysFile      .ssh/authorized_keys
+PermitRootLogin no
+ChallengeResponseAuthentication yes
+UsePAM yes
+PasswordAuthentication no
+Subsystem       sftp    /usr/libexec/sftp-server

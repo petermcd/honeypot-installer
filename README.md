@@ -1,6 +1,6 @@
 # SSH Honeypot Installer
 
-This repository brings together 3 seperate repositories
+This repository brings together 2 seperate repositories
 to enable a customised Open SSH server be installed capturing
 login details. The package should stop the ability to log into
 SSH but capture the attempts.
